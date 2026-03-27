@@ -288,10 +288,10 @@ svg {
 
 #olg {
   width: 110px;
-  height: 62px;
-  -webkit-transform: translate(0px, 194px);
-  -ms-transform: translate(0px, 194px);
-  transform: translate(0px, 194px);
+  height: 69px;
+  -webkit-transform: translate(0px, 190px);
+  -ms-transform: translate(0px, 190px);
+  transform: translate(0px, 190px);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-perspective: 1000px;
