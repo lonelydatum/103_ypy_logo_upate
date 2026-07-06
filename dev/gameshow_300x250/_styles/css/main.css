@@ -231,7 +231,8 @@ svg#fire {
   opacity: 0;
 }
 
-#bg, #logo_olg {
+#bg,
+#logo_olg {
   -webkit-transform-origin: 0% 100%;
   -ms-transform-origin: 0% 100%;
   transform-origin: 0% 100%;
@@ -253,6 +254,134 @@ svg {
   width: 82px;
   bottom: -3px;
   left: 0;
+}
+
+.ypy-all div {
+  overflow: hidden;
+  width: 30px;
+  height: 19px;
+  position: absolute;
+}
+
+.ypy_all img {
+  -webkit-transform: translate(0px, 20px) scale(0.125, 0.125);
+  -ms-transform: translate(0px, 20px) scale(0.125, 0.125);
+  transform: translate(0px, 20px) scale(0.125, 0.125);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_1 {
+  -webkit-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_2 {
+  -webkit-transform: translate(11px, 0px);
+  -ms-transform: translate(11px, 0px);
+  transform: translate(11px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_3 {
+  -webkit-transform: translate(25.5px, 0px);
+  -ms-transform: translate(25.5px, 0px);
+  transform: translate(25.5px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_4 {
+  -webkit-transform: translate(43px, 0px);
+  -ms-transform: translate(43px, 0px);
+  transform: translate(43px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_5 {
+  -webkit-transform: translate(58px, 0px);
+  -ms-transform: translate(58px, 0px);
+  transform: translate(58px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_6 {
+  -webkit-transform: translate(69px, 0px);
+  -ms-transform: translate(69px, 0px);
+  transform: translate(69px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_7 {
+  -webkit-transform: translate(84px, 0px);
+  -ms-transform: translate(84px, 0px);
+  transform: translate(84px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_8 {
+  -webkit-transform: translate(102px, 0px);
+  -ms-transform: translate(102px, 0px);
+  transform: translate(102px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_9 {
+  -webkit-transform: translate(113px, 0px);
+  -ms-transform: translate(113px, 0px);
+  transform: translate(113px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.ypy_all_10 {
+  -webkit-transform: translate(128px, 0px);
+  -ms-transform: translate(128px, 0px);
+  transform: translate(128px, 0px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  position: absolute;
 }
 
 #banner {
@@ -289,14 +418,20 @@ svg {
 #olg {
   width: 110px;
   height: 69px;
-  -webkit-transform: translate(0px, 190px);
-  -ms-transform: translate(0px, 190px);
-  transform: translate(0px, 190px);
+  -webkit-transform: translate(0px, 189px);
+  -ms-transform: translate(0px, 189px);
+  transform: translate(0px, 189px);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-perspective: 1000px;
   perspective: 1000px;
   position: absolute;
+}
+
+.ypy-all {
+  position: absolute;
+  left: 74px;
+  top: 176px;
 }
 
 .device {

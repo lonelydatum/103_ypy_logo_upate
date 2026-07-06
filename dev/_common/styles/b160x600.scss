@@ -19,14 +19,21 @@
   // opacity: 1;
 }
 
-.ypy-all {
-  // opacity: ;
-  @include pos-scale(3, 341, 1.03);
-}
+// .ypy-all {
+//   // opacity: ;
+//   @include pos-scale(3, 341, 1.03);
+// }
 
 .logo {
   @include pos(0, 0);
   width: 82px;
   bottom: -3px;
   left: 0;
+}
+
+.ypy-all {
+  transform: scale(1.03);
+  position: absolute;
+  left: 2px;
+  top: 357px;
 }

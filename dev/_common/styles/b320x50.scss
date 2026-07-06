@@ -41,3 +41,8 @@ svg#fire {
   height: 47px;
   @include pos(0, 11);
 }
+
+.ypy-all {
+  // opacity: ;
+  transform: translate(45px, 12px) scale(0.645);
+}

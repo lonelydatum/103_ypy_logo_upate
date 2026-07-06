@@ -9,8 +9,7 @@ var _proline = require("./proline");
 
 var _helpersHelpersJs = require("./helpers/helpers.js");
 
-var _ypy_fxJs = require("./ypy_fx.js");
-
+// import { initYPY, ypyScroll } from "./ypy_fx.js";
 var banner = document.getElementById("banner");
 var bannerSize = { w: banner.offsetWidth, h: banner.offsetHeight };
 
@@ -21,8 +20,16 @@ gsap.defaults({
 var READ_COMPOSITE = { t1: 1.6, t2: 3 };
 var READ_LIVEDEALERS = { t1: 1.6, t2: 3 };
 var READ_GAMESHOW = { t1: 1.6, t2: 3.3 };
+var READ_PLAYSMART = { t1: 2, t2: 3.3 };
+var READ_fastPacedGames = { t1: 1.6, t2: 4 };
 
-var READ_ALL = { composite: READ_COMPOSITE, gameshow: READ_GAMESHOW, livedealers: READ_LIVEDEALERS };
+var READ_ALL = {
+  composite: READ_COMPOSITE,
+  gameshow: READ_GAMESHOW,
+  livedealers: READ_LIVEDEALERS,
+  playsmart: READ_PLAYSMART,
+  fastPacedGames: READ_fastPacedGames
+};
 
 var read = READ_ALL[universalBanner.name];
 var w = bannerSize.w;
@@ -100,13 +107,118 @@ function init(_ref) {
   return tl;
 }
 
+function playsmartHor(_ref2) {
+  var ypy = _ref2.ypy;
+  var device = _ref2.device;
+  var logoAnimateStart = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+  var tl = new TimelineMax({
+    onComplete: function onComplete() {
+      if (document.getElementById("legalBtn")) {
+        TweenLite.set("#legalBtn", { display: "block" });
+      }
+    }
+  });
+
+  TweenLite.to(".hero_on", { duration: 1.6, opacity: 0.9, yoyo: true, repeat: 11, repeatDelay: 0, ease: "back.out" });
+  // TweenLite.to(".hero_on", { duration: 2, opacity: 0, yoyo: true, repeat: 11, repeatDelay: 0.3, ease: "back.out" });
+
+  tl.set(".frame1", { opacity: 1 });
+
+  tl.add(ypy);
+  tl.add("t1", "+=.2");
+  tl.from([".t1"], { duration: 0.3, opacity: 0 }, "t1");
+  tl.from([".device"], { duration: 0.5, opacity: 0 }, "t1");
+  tl.to(".t1", { duration: 0.3, opacity: 0 }, "+=" + read.t1);
+
+  tl.add("t2");
+  if (device) {
+    tl.add(device);
+  }
+
+  tl.from(".t2", { duration: 0.3, opacity: 0 }, "t2");
+  tl.to(".t2", { duration: 0.3, opacity: 0 }, "+=" + read.t2);
+  tl.to([".frame1"], { duration: 0.3, opacity: 0 });
+  tl.set(".frame2", { opacity: 1 }, "+=.4");
+  tl.from(".end_device", { duration: 0.3, opacity: 0 });
+  tl.from(".end_url", { duration: 0.3, opacity: 0 }, "+=.3");
+  tl.add(ypyScroll());
+  // tl.from(".end_ypy", { duration: 0.3, opacity: 0 } );
+  tl.from(".end_cta", { duration: 0.3, opacity: 0, y: "+=50", opacity: 0 });
+
+  tl.to("._logo", { duration: 0.3, y: "+=90" });
+  tl.add((0, _proline.olg)());
+  return tl;
+}
+
+function initPlaysmart(_ref3) {
+  var ypy = _ref3.ypy;
+  var device = _ref3.device;
+  var logoAnimateStart = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+  var tl = new TimelineMax({
+    onComplete: function onComplete() {
+      if (document.getElementById("legalBtn")) {
+        TweenLite.set("#legalBtn", { display: "block" });
+      }
+    }
+  });
+
+  TweenLite.to(".hero_on", { duration: 1.6, opacity: 0.9, yoyo: true, repeat: 11, repeatDelay: 0, ease: "back.out" });
+  tl.set(".frame1", { opacity: 1 });
+
+  tl.add(ypy);
+  tl.from(".hero_with_text", { duration: 0.3, opacity: 0 }, "+=1");
+  tl.add("t1", "+=.2");
+  tl.from([".t1"], { duration: 0.3, opacity: 0 }, "t1");
+  tl.from([".device"], { duration: 0.5, opacity: 0 }, "t1");
+  tl.to(".t1", { duration: 0.3, opacity: 0 }, "+=" + read.t1);
+
+  tl.add("t2");
+  if (device) {
+    tl.add(device);
+  }
+
+  tl.from(".t2", { duration: 0.3, opacity: 0 }, "t2");
+  tl.to(".t2", { duration: 0.3, opacity: 0 }, "+=" + read.t2);
+  tl.to([".frame1"], { duration: 0.3, opacity: 0 });
+  tl.set(".frame2", { opacity: 1 }, "+=.4");
+  tl.from(".end_device", { duration: 0.3, opacity: 0 });
+  tl.from(".end_url", { duration: 0.3, opacity: 0 }, "+=.3");
+  // tl.from(".end_ypy", { duration: 0.3, opacity: 0 }, "+=.3");
+  tl.add(ypyScroll());
+  tl.from(".end_cta", { duration: 0.3, opacity: 0, y: "+=50", opacity: 0 }, "+=.3");
+
+  tl.to("._logo", { duration: 0.3, y: "+=90" });
+  tl.add((0, _proline.olg)());
+  return tl;
+}
+
+function ypyScroll() {
+  var tl = new TimelineMax();
+
+  // tl.set(".ypy-all", {opacity:0})
+  tl.add("spin");
+  tl.set(".hide-until", { visibility: "visible" }, "spin");
+  for (var i = 1; i < 11; i++) {
+    var y = i * 20;
+    var duration = i / 11 * 1.6;
+
+    tl.to(".ypy-all .ypy_all_" + i + " img", { ease: "back.inOut", y: (i - 1) * -20 - 2, duration: duration }, "spin");
+  }
+  return tl;
+}
+
 exports.init = init;
+exports.initPlaysmart = initPlaysmart;
 exports.olg = _proline.olg;
 exports.bannerSize = bannerSize;
 exports.logoGO = logoGO;
 exports.read = read;
+exports.playsmartHor = playsmartHor;
+exports.ypyScroll = ypyScroll;
 
-},{"./helpers/helpers.js":2,"./proline":3,"./ypy_fx.js":4}],2:[function(require,module,exports){
+},{"./helpers/helpers.js":2,"./proline":3}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -148,39 +260,6 @@ function olg() {
 exports.olg = olg;
 
 },{}],4:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-function initYPY() {
-	var tl = new TimelineMax();
-	// tl.set(".ypy-all", {opacity:0})
-	for (var i = 1; i < 11; i++) {
-		tl.set(".ypy-all .ypy_all_" + i + " img", { y: -220 });
-	}
-}
-function ypyScroll() {
-	var tl = new TimelineMax();
-
-	// tl.set(".ypy-all", {opacity:0})
-	tl.add("spin");
-	tl.set(".hide-until", { visibility: "visible" }, "spin");
-	for (var i = 1; i < 11; i++) {
-		var y = i * 20;
-		var duration = i / 11 * 1.6;
-
-		tl.to(".ypy-all .ypy_all_" + i + " img", { ease: "back.inOut", y: (i - 1) * -20 - 2, duration: duration }, "spin");
-	}
-	return tl;
-}
-
-initYPY();
-
-exports.initYPY = initYPY;
-exports.ypyScroll = ypyScroll;
-
-},{}],5:[function(require,module,exports){
 "use strict";
 
 var _commonJsCommonJs = require('../../_common/js/common.js');
@@ -233,7 +312,7 @@ function init(_ref) {
 
 init({ ypy: tl });
 
-},{"../../_common/js/common.js":1}]},{},[5])
+},{"../../_common/js/common.js":1}]},{},[4])
 
 
 //# sourceMappingURL=main.js.map

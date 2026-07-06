@@ -1,6 +1,6 @@
 import { olg } from "./proline";
 import { origin } from "./helpers/helpers.js";
-import { initYPY, ypyScroll } from "./ypy_fx.js";
+// import { initYPY, ypyScroll } from "./ypy_fx.js";
 const banner = document.getElementById("banner");
 const bannerSize = { w: banner.offsetWidth, h: banner.offsetHeight };
 
@@ -11,8 +11,16 @@ gsap.defaults({
 const READ_COMPOSITE = { t1: 1.6, t2: 3 };
 const READ_LIVEDEALERS = { t1: 1.6, t2: 3 };
 const READ_GAMESHOW = { t1: 1.6, t2: 3.3 };
+const READ_PLAYSMART = { t1: 2, t2: 3.3 };
+const READ_fastPacedGames = { t1: 1.6, t2: 4 };
 
-const READ_ALL = { composite: READ_COMPOSITE, gameshow: READ_GAMESHOW, livedealers: READ_LIVEDEALERS };
+const READ_ALL = {
+  composite: READ_COMPOSITE,
+  gameshow: READ_GAMESHOW,
+  livedealers: READ_LIVEDEALERS,
+  playsmart: READ_PLAYSMART,
+  fastPacedGames: READ_fastPacedGames,
+};
 
 const read = READ_ALL[universalBanner.name];
 const { w, h } = bannerSize;
@@ -85,4 +93,98 @@ function init({ ypy, device }, logoAnimateStart = false) {
   return tl;
 }
 
-export { init, olg, bannerSize, logoGO, read };
+function playsmartHor({ ypy, device }, logoAnimateStart = false) {
+  const tl = new TimelineMax({
+    onComplete: () => {
+      if (document.getElementById("legalBtn")) {
+        TweenLite.set("#legalBtn", { display: "block" });
+      }
+    },
+  });
+
+  TweenLite.to(".hero_on", { duration: 1.6, opacity: 0.9, yoyo: true, repeat: 11, repeatDelay: 0, ease: "back.out" });
+  // TweenLite.to(".hero_on", { duration: 2, opacity: 0, yoyo: true, repeat: 11, repeatDelay: 0.3, ease: "back.out" });
+
+  tl.set(".frame1", { opacity: 1 });
+
+  tl.add(ypy);
+  tl.add("t1", "+=.2");
+  tl.from([".t1"], { duration: 0.3, opacity: 0 }, "t1");
+  tl.from([".device"], { duration: 0.5, opacity: 0 }, "t1");
+  tl.to(".t1", { duration: 0.3, opacity: 0 }, `+=${read.t1}`);
+
+  tl.add("t2");
+  if (device) {
+    tl.add(device);
+  }
+
+  tl.from(".t2", { duration: 0.3, opacity: 0 }, "t2");
+  tl.to(".t2", { duration: 0.3, opacity: 0 }, `+=${read.t2}`);
+  tl.to([".frame1"], { duration: 0.3, opacity: 0 });
+  tl.set(".frame2", { opacity: 1 }, "+=.4");
+  tl.from(".end_device", { duration: 0.3, opacity: 0 });
+  tl.from(".end_url", { duration: 0.3, opacity: 0 }, "+=.3");
+  tl.add(ypyScroll());
+  // tl.from(".end_ypy", { duration: 0.3, opacity: 0 } );
+  tl.from(".end_cta", { duration: 0.3, opacity: 0, y: "+=50", opacity: 0 });
+
+  tl.to("._logo", { duration: 0.3, y: "+=90" });
+  tl.add(olg());
+  return tl;
+}
+
+function initPlaysmart({ ypy, device }, logoAnimateStart = false) {
+  const tl = new TimelineMax({
+    onComplete: () => {
+      if (document.getElementById("legalBtn")) {
+        TweenLite.set("#legalBtn", { display: "block" });
+      }
+    },
+  });
+
+  TweenLite.to(".hero_on", { duration: 1.6, opacity: 0.9, yoyo: true, repeat: 11, repeatDelay: 0, ease: "back.out" });
+  tl.set(".frame1", { opacity: 1 });
+
+  tl.add(ypy);
+  tl.from(".hero_with_text", { duration: 0.3, opacity: 0 }, "+=1");
+  tl.add("t1", "+=.2");
+  tl.from([".t1"], { duration: 0.3, opacity: 0 }, "t1");
+  tl.from([".device"], { duration: 0.5, opacity: 0 }, "t1");
+  tl.to(".t1", { duration: 0.3, opacity: 0 }, `+=${read.t1}`);
+
+  tl.add("t2");
+  if (device) {
+    tl.add(device);
+  }
+
+  tl.from(".t2", { duration: 0.3, opacity: 0 }, "t2");
+  tl.to(".t2", { duration: 0.3, opacity: 0 }, `+=${read.t2}`);
+  tl.to([".frame1"], { duration: 0.3, opacity: 0 });
+  tl.set(".frame2", { opacity: 1 }, "+=.4");
+  tl.from(".end_device", { duration: 0.3, opacity: 0 });
+  tl.from(".end_url", { duration: 0.3, opacity: 0 }, "+=.3");
+  // tl.from(".end_ypy", { duration: 0.3, opacity: 0 }, "+=.3");
+  tl.add(ypyScroll());
+  tl.from(".end_cta", { duration: 0.3, opacity: 0, y: "+=50", opacity: 0 }, "+=.3");
+
+  tl.to("._logo", { duration: 0.3, y: "+=90" });
+  tl.add(olg());
+  return tl;
+}
+
+function ypyScroll() {
+  const tl = new TimelineMax();
+
+  // tl.set(".ypy-all", {opacity:0})
+  tl.add("spin");
+  tl.set(".hide-until", { visibility: "visible" }, "spin");
+  for (let i = 1; i < 11; i++) {
+    const y = i * 20;
+    const duration = (i / 11) * 1.6;
+
+    tl.to(`.ypy-all .ypy_all_${i} img`, { ease: "back.inOut", y: (i - 1) * -20 - 2, duration }, "spin");
+  }
+  return tl;
+}
+
+export { init, initPlaysmart, olg, bannerSize, logoGO, read, playsmartHor, ypyScroll };
