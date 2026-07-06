@@ -281,7 +281,7 @@ function init(_ref) {
 
   TweenLite.to(".hero_on", { duration: 2, opacity: 1, yoyo: true, repeat: 0, repeatDelay: 0, ease: "back.out" });
 
-  TweenLite.to(".phone", { duration: 0.8, opacity: 0.6, yoyo: true, repeat: 11, repeatDelay: 0, ease: "back.out" });
+  // TweenLite.to(".phone", { duration: 0.8, opacity: 0.6, yoyo: true, repeat: 11, repeatDelay: 0, ease: "back.out" });
 
   tl.set(".frame1", { opacity: 1 });
   tl.set(".end_device", { opacity: 0 });
