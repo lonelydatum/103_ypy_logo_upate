@@ -31,6 +31,10 @@ var READ_ALL = {
   fastPacedGames: READ_fastPacedGames
 };
 
+if (universalBanner.name === "fastPacedGames") {
+  document.getElementById("legalContent").innerHTML = "©2026 Evolution. All rights reserved. \nMust be 19 years of age or older and a resident of Ontario, located in the province to play online casino games. Games may not appear as shown. Odds vary by game. Terms and conditions apply.\n*Voted most trusted Online Casino brand by Ontario shoppers based on the 2026 Brandspark® Canadian Trust Study.";
+}
+
 var read = READ_ALL[universalBanner.name];
 var w = bannerSize.w;
 var h = bannerSize.h;

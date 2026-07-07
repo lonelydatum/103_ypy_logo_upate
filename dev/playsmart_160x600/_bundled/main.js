@@ -31,6 +31,10 @@ var READ_ALL = {
   fastPacedGames: READ_fastPacedGames
 };
 
+if (universalBanner.name === "fastPacedGames") {
+  document.getElementById("legalContent").innerHTML = "©2026 Evolution. All rights reserved. \nMust be 19 years of age or older and a resident of Ontario, located in the province to play online casino games. Games may not appear as shown. Odds vary by game. Terms and conditions apply.\n*Voted most trusted Online Casino brand by Ontario shoppers based on the 2026 Brandspark® Canadian Trust Study.";
+}
+
 var read = READ_ALL[universalBanner.name];
 var w = bannerSize.w;
 var h = bannerSize.h;
@@ -268,7 +272,7 @@ var ypy = new TimelineMax();
 ypy.from([".ypy_1", ".ypy_2", ".ypy_3"], { duration: 0.3, y: "-=200", stagger: 0.13 });
 
 var device = new TimelineMax();
-device.to(".device", { duration: 0.3, x: 216, y: 109, scale: 0.45 }, "t2");
+// device.to(".device", { duration: 0.3, x: 216, y: 109, scale: 0.45 }, "t2");
 
 (0, _commonJsCommonJs.initPlaysmart)({ ypy: ypy, device: device }, true);
 
